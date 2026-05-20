@@ -3,6 +3,7 @@
 ###############################
 target/
 *.class
+*.log
 
 ###############################
 # Spring Boot Artifacts
@@ -59,9 +60,7 @@ logs/
 ###############################
 # Environment / Secrets
 ###############################
-src/main/resources/application-local.properties
-src/main/resources/application-dev.properties
-src/main/resources/application-prod.properties
+application-local.properties
 *.env
 .env*
 
