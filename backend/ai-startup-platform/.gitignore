@@ -1,0 +1,73 @@
+###############################
+# Maven / Java
+###############################
+target/
+*.class
+
+###############################
+# Spring Boot Artifacts
+###############################
+*.jar
+*.war
+*.zip
+
+###############################
+# IntelliJ IDEA
+###############################
+.idea/
+*.iml
+*.iws
+*.ipr
+
+###############################
+# Eclipse / STS
+###############################
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath/
+.springBeans/
+.sts4-cache/
+
+###############################
+# NetBeans
+###############################
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+###############################
+# VS Code
+###############################
+.vscode/
+
+###############################
+# OS Files
+###############################
+.DS_Store
+Thumbs.db
+
+###############################
+# Logs
+###############################
+logs/
+*.log
+
+###############################
+# Environment / Secrets
+###############################
+src/main/resources/application-local.properties
+src/main/resources/application-dev.properties
+src/main/resources/application-prod.properties
+*.env
+.env*
+
+###############################
+# Temp & Swap
+###############################
+*.tmp
+*.swp
+*.swo
