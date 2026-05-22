@@ -1,6 +1,5 @@
 package com.team.ai_startup_platform.service;
 
-import com.team.ai_startup_platform.client.GeminiClient;
 import com.team.ai_startup_platform.dto.BusinessPlanRequest;
 import com.team.ai_startup_platform.dto.IdeaGenerationRequest;
 import lombok.RequiredArgsConstructor;
@@ -9,16 +8,17 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AIService {
-    private final GeminiClient geminiClient;
+
+    private final GroqService groqService;
 
     public String generateIdea(IdeaGenerationRequest request) {
         String prompt = """
                 Generate a startup idea for:
-                
+
                 Industry: %s
                 Problem: %s
                 Budget: %s
-                
+
                 Return:
                 Startup Name
                 Problem
@@ -32,7 +32,8 @@ public class AIService {
                         request.getProblem(),
                         request.getBudget()
                 );
-        return geminiClient.generateContent(prompt);
+
+        return groqService.generateContent(prompt);
     }
 
     public String generateBusinessPlan(BusinessPlanRequest request) {
@@ -48,6 +49,6 @@ public class AIService {
             """
                 .formatted(request.getStartupIdea());
 
-        return geminiClient.generateContent(prompt);
+        return groqService.generateContent(prompt);
     }
 }

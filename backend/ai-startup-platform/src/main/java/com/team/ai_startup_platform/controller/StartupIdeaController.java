@@ -17,6 +17,11 @@ public class StartupIdeaController {
 
     private final StartupIdeaService startupIdeaService;
 
+    @GetMapping("/{id}")
+    public IdeaResponse getIdeaById(@PathVariable Long id) {
+        return startupIdeaService.getIdeaById(id);
+    }
+
     @PostMapping
     public Map<String,String> saveIdea(
             @Valid @RequestBody IdeaRequest request
@@ -39,5 +44,28 @@ public class StartupIdeaController {
         String message= startupIdeaService.deleteIdea(id);
 
         return Map.of("message",message);
+    }
+
+    @PutMapping("/{id}")
+    public Map<String, String> updateIdea(
+            @PathVariable Long id,
+            @Valid @RequestBody IdeaRequest request
+    ) {
+        String message = startupIdeaService.updateIdea(id, request);
+
+        return Map.of("message", message);
+    }
+
+    @PutMapping("/{id}/business-plan")
+    public Map<String, String> saveBusinessPlan(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request
+    ) {
+        String message = startupIdeaService.saveBusinessPlan(
+                id,
+                request.get("businessPlan")
+        );
+
+        return Map.of("message", message);
     }
 }
