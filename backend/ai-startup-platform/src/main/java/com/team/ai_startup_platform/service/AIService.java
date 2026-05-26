@@ -13,19 +13,63 @@ public class AIService {
 
     public String generateIdea(IdeaGenerationRequest request) {
         String prompt = """
-                Generate a startup idea for:
-
+                You are an expert startup innovation consultant.
+                
+                Generate a startup idea based on:
+                
                 Industry: %s
-                Problem: %s
-                Budget: %s
-
-                Return:
-                Startup Name
-                Problem
-                Solution
-                Revenue Model
-                Target Audience
-                Tech Stack
+                Problem Statement: %s
+                Budget Level: %s
+                
+                IMPORTANT:
+                Return response in CLEAN MARKDOWN FORMAT.
+                
+                Use EXACT structure below:
+                
+                # Startup Name
+                One startup name only
+                
+                # One-Line Pitch
+                One concise sentence
+                
+                # Problem Overview
+                - 3 bullet points
+                
+                # Proposed Solution
+                - 3 to 5 bullet points
+                
+                # Target Audience
+                - Bullet points
+                
+                # Key Features
+                - Bullet points
+                
+                # Market Opportunity
+                - Short bullet points
+                
+                # Basic Tech Stack
+                - Frontend:
+                - Backend:
+                - Database:
+                - AI/Tools:
+                
+                # MVP Features
+                - Bullet points
+                
+                # Final Idea Summary
+                Short founder-friendly conclusion
+                
+                RULES:
+                - NO giant paragraphs
+                - Use markdown headings only
+                - Use short readable bullets
+                - Make output visually scannable
+                - Professional startup founder tone
+                - Practical and realistic startup idea
+                - Do NOT include business plan
+                - Do NOT include revenue model
+                - Do NOT include marketing strategy
+                - Do NOT include investment planning
                 """
                 .formatted(
                         request.getIndustry(),
@@ -38,15 +82,81 @@ public class AIService {
 
     public String generateBusinessPlan(BusinessPlanRequest request) {
         String prompt = """
-            Create a concise startup business plan for:
-
-            %s
-
-            Include only:
-            Executive Summary
-            Revenue Model
-            Go To Market Strategy
-            """
+                You are an expert startup consultant and investor pitch advisor.
+                
+                Create an investor-ready business plan for this startup idea:
+                
+                Startup Idea:
+                %s
+                
+                IMPORTANT:
+                Return the response in CLEAN MARKDOWN FORMAT.
+                
+                Use EXACT structure below:
+                
+                # Executive Summary
+                - 3 concise bullet points
+                
+                # Problem
+                - Bullet points
+                
+                # Solution
+                - Bullet points
+                
+                # Target Audience
+                - Bullet points
+                
+                # Business Objectives
+                - Bullet points
+                
+                # Revenue Model
+                - Bullet points
+                
+                # Go-To-Market Strategy
+                - Bullet points
+                
+                # Marketing Strategy
+                - Bullet points
+                
+                # Competitive Advantage
+                - Bullet points
+                
+                # Operations Plan
+                - Bullet points
+                
+                # Financial Projection
+                - Year 1:
+                - Year 2:
+                - Year 3:
+                
+                # Risks
+                - Bullet points
+                
+                # 90-Day Execution Roadmap
+                Week 1-4:
+                - Bullet points
+                
+                Week 5-8:
+                - Bullet points
+                
+                Week 9-12:
+                - Bullet points
+                
+                # Success Metrics
+                - Bullet points
+                
+                # Final Recommendation
+                - Short conclusion
+                
+                RULES:
+                - NO giant paragraphs
+                - Use short readable bullet points
+                - Make it visually scannable
+                - Professional startup founder tone
+                - Investor-friendly suggestions
+                - Practical and realistic recommendations
+                - Clean markdown headings only
+                """
                 .formatted(request.getStartupIdea());
 
         return groqService.generateContent(prompt);
